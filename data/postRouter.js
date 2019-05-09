@@ -31,6 +31,7 @@ router.get( '/:id' , async ( req, res ) => {
 
 //ADDING POSTS
 router.post( '/' , async ( req, res ) => {
+    console.log(req.body)
     try {
         const post = await Posts.insert( req.body );
         res.status( 201 ).json( post );
@@ -58,7 +59,7 @@ router.delete( '/:id' , async ( req, res ) => {
 //UPDATING POSTS
 router.put( '/:id' , async ( req, res ) => {
     try {
-        const post = await Posts.update( req.body );
+        const post = await Posts.update( req.params.id, req.body );
         if ( post ) {
             res.status( 200 ).json( post );
         } else {
