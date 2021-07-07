@@ -7,6 +7,7 @@ module.exports = {
   insert,
   update,
   remove,
+  addComment
 };
 
 function get() {
@@ -44,4 +45,13 @@ function remove(id) {
   return db('users')
     .where('id', id)
     .del();
+}
+
+//Added function :D
+function addComment(user) {
+  return db('posts')
+    .insert(user)
+    .then(ids => {
+      return getById(ids[0]);
+    });
 }
